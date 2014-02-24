@@ -1,0 +1,15 @@
+﻿
+tile.CompactEngine:CompactEngineWood.name=圧縮 木エンジン
+tile.CompactEngineWood.level_1=8倍圧縮 木エンジン
+tile.CompactEngineWood.level_2=32倍圧縮 木エンジン
+tile.CompactEngineWood.level_3=128倍圧縮 木エンジン
+tile.CompactEngineWood.level_4=512倍圧縮 木エンジン
+tile.CompactEngineWood.level_5=2048倍圧縮 木エンジン
+item.compactengine:energyChecker.name=エネルギー計測器
+energyChecker.maxPower=出力
+energyChecker.energy=熱量
+energyChecker.workEnergy=受入限界
+energyChecker.pipeEnergy=流量
+energyChecker.heat=温度
+engine.alert=s倍圧縮木エンジンがあと%d分で爆発します。  座標 x:%d y:%d z:%d
+engine.explode=爆発力%sの圧縮木エンジンが爆発しました。  座標 x:%d y:%d z:%d

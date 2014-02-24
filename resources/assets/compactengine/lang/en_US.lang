@@ -1,0 +1,15 @@
+﻿
+tile.CompactEngine:CompactEngineWood.name=Compressed Redstone Engine
+tile.CompactEngineWood.level_1=Redstone Engine x8
+tile.CompactEngineWood.level_2=Redstone Engine x32
+tile.CompactEngineWood.level_3=Redstone Engine x128
+tile.CompactEngineWood.level_4=Redstone Engine x512
+tile.CompactEngineWood.level_5=Redstone Engine x2048
+item.compactengine:energyChecker.name=Energy Checker
+energyChecker.maxPower=maxPower
+energyChecker.energy=energy
+energyChecker.workEnergy=workEnergy
+energyChecker.pipeEnergy=pipeEnergy
+energyChecker.heat=Heat
+engine.alert=CompactEngine x %s explosion is limit %d:00 (x:%d y:%d z:%d)
+engine.explode=Explode! range %s (x:%d y:%d z:%d)

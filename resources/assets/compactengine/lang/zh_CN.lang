@@ -1,0 +1,15 @@
+
+tile.CompactEngine:CompactEngineWood.name=压缩红石引擎
+tile.CompactEngineWood.level_1=红石引擎x8
+tile.CompactEngineWood.level_2=红石引擎x32
+tile.CompactEngineWood.level_3=红石引擎x128
+tile.CompactEngineWood.level_4=红石引擎x512
+tile.CompactEngineWood.level_5=红石引擎x2048
+item.compactengine:energyChecker.name=能量检测器
+energyChecker.maxPower=最大功率
+energyChecker.energy=能量
+energyChecker.workEnergy=工作能量
+energyChecker.pipeEnergy=管道能量
+energyChecker.heat=热量
+engine.alert=复合引擎x%s将爆炸于%d:00(x:%d y:%d z:%d)
+engine.explode=爆炸了!波及范围为%s(x:%d y:%d z:%d)
