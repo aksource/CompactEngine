@@ -21,8 +21,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid="CompactEngine", name="CompactEngine", version="build 5(for mc1.6.2-1.6.4  bc4.2.1  Forge#965 )", dependencies ="required-after:BuildCraft|Energy")
-//@NetworkMod(clientSideRequired=true, serverSideRequired=false)
+@Mod(modid="CompactEngine", name="CompactEngine", version="build 6(for mc1.7.2 bc5.0.2  Forge#1024 )", dependencies ="required-after:BuildCraft|Energy", useMetadata = true)
 public class CompactEngine
 {
 	@Instance("CompactEngine")
@@ -31,12 +30,12 @@ public class CompactEngine
 	public static CommonProxy proxy;
 
 	public static BlockCompactEngine engineBlock;
-	public static ItemBlock engineItem;
+//	public static ItemBlock engineItem;
 	public static Item energyChecker;
-	private static Fluid buildcraftFluidOil;
+//	private static Fluid buildcraftFluidOil;
 
-	public static int blockID_CompactEngine;
-	public static int itemID_energyChecker;
+//	public static int blockID_CompactEngine;
+//	public static int itemID_energyChecker;
 	public static boolean isAddCompactEngine512and2048;
 	public static int CompactEngineExplosionPowerLevel;
 	public static int CompactEngineExplosionTimeLevel;
