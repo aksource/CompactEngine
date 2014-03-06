@@ -21,7 +21,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid="CompactEngine", name="CompactEngine", version="build 6(for mc1.7.2 bc5.0.2  Forge#1024 )", dependencies ="required-after:BuildCraft|Energy", useMetadata = true)
+@Mod(modid="CompactEngine", name="CompactEngine", version="build 6(for mc1.7.2 bc5.0.3  Forge#1024 )", dependencies ="required-after:BuildCraft|Energy", useMetadata = true)
 public class CompactEngine
 {
 	@Instance("CompactEngine")
@@ -47,7 +47,7 @@ public class CompactEngine
 	public static ItemStack engine2;
 	public static ItemStack engine3;
 	public static ItemStack engine4;
-//	public static ItemStack engine5 = new ItemStack(engineBlock, 1, 4);
+	public static ItemStack engine5;
 	
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event)
@@ -67,8 +67,8 @@ public class CompactEngine
 		GameRegistry.registerBlock(engineBlock, ItemCompactEngine.class, "compactengineblock");
 //		engineItem  = new ItemCompactEngine(engineBlock);
 //		GameRegistry.registerItem(engineItem, "compactengineitem");
-		energyChecker = new ItemEnergyChecker().setUnlocalizedName("compactengine:energyChecker").setTextureName("compactengine:energyChecker");
-		GameRegistry.registerItem(energyChecker, "energychecker");
+//		energyChecker = new ItemEnergyChecker().setUnlocalizedName("compactengine:energyChecker").setTextureName("compactengine:energyChecker");
+//		GameRegistry.registerItem(energyChecker, "energychecker");
 	}
 	@Mod.EventHandler
 	public void load(FMLInitializationEvent event)
@@ -83,11 +83,13 @@ public class CompactEngine
 		engine2 = new ItemStack(engineBlock, 1, 1);
 		engine3 = new ItemStack(engineBlock, 1, 2);
 		engine4 = new ItemStack(engineBlock, 1, 3);
+        engine5 = new ItemStack(engineBlock, 1, 4);
 		proxy.registerTileEntitySpecialRenderer();
 		GameRegistry.registerTileEntity(TileCompactEngine8.class, "tile.compactengine8");
 		GameRegistry.registerTileEntity(TileCompactEngine32.class, "tile.compactengine32");
 		GameRegistry.registerTileEntity(TileCompactEngine128.class, "tile.compactengine128");
 		GameRegistry.registerTileEntity(TileCompactEngine512.class, "tile.compactengine512");
+//        GameRegistry.registerTileEntity(TileCompactEngine2048.class, "tile.compactengine2048");
 
 		ItemStack woodEngine = new ItemStack(BuildCraftEnergy.engineBlock, 1, 0);
 		ItemStack ironEngine = new ItemStack(BuildCraftEnergy.engineBlock, 1, 2);
@@ -97,17 +99,17 @@ public class CompactEngine
 		ItemStack goldORGate = new ItemStack(BuildCraftTransport.pipeGate, 1, 4);
 		ItemStack diaORGate = new ItemStack(BuildCraftTransport.pipeGate, 1, 6);
 
-		GameRegistry.addRecipe(engine1, new Object[]{"www", "wgw", "www", 'w', woodEngine, 'g', ironGear});
-		GameRegistry.addRecipe(engine2, new Object[]{"geg", "eie", "geg", 'e', engine1, 'g', diaGear, 'i', ironEngine});
-		GameRegistry.addRecipe(engine3, new Object[]{"geg", "eie", "geg", 'e', engine2, 'g', diaChip, 'i', ironEngine});
+		GameRegistry.addRecipe(engine1, "www", "wgw", "www", 'w', woodEngine, 'g', ironGear);
+		GameRegistry.addRecipe(engine2, "geg", "eie", "geg", 'e', engine1, 'g', diaGear, 'i', ironEngine);
+		GameRegistry.addRecipe(engine3, "geg", "eie", "geg", 'e', engine2, 'g', diaChip, 'i', ironEngine);
 
 		if(isAddCompactEngine512and2048)
 		{
-			GameRegistry.addRecipe(engine4, new Object[]{"geg", "eie", "geg", 'e', engine3, 'g', goldORGate, 'i', ironEngine});
-//			GameRegistry.addRecipe(engine5, new Object[]{"geg", "eie", "geg", 'e', engine4, 'g', diaORGate, 'i', ironEngine});
+			GameRegistry.addRecipe(engine4, "geg", "eie", "geg", 'e', engine3, 'g', goldORGate, 'i', ironEngine);
+//			GameRegistry.addRecipe(engine5, "geg", "eie", "geg", 'e', engine4, 'g', diaORGate, 'i', ironEngine);
 		}
-		GameRegistry.addRecipe(new ItemStack(energyChecker), new Object[]{"w", "i",
-			'w', BuildCraftTransport.pipePowerWood, 'i', Items.iron_ingot});
+//		GameRegistry.addRecipe(new ItemStack(energyChecker), new Object[]{"w", "i",
+//			'w', BuildCraftTransport.pipePowerWood, 'i', Items.iron_ingot});
 	}
 	public static void addChat(String message)
 	{

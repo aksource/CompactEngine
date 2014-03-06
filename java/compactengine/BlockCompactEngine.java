@@ -11,6 +11,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
@@ -42,8 +43,10 @@ public class BlockCompactEngine extends BlockEngine
     		return new TileCompactEngine32();
     	else if(metadata == 2)
     		return new TileCompactEngine128();
-    	else
+    	else/* if (metadata == 3)*/
     		return new TileCompactEngine512();
+//        else
+//            return new TileCompactEngine2048();
     }
     @Override
 	public void getSubBlocks(Item blockid, CreativeTabs par2CreativeTabs, List arraylist)
@@ -64,14 +67,15 @@ public class BlockCompactEngine extends BlockEngine
     {
         TileEngine tileengine = (TileEngine)world.getTileEntity(x, y, z);
 
-		if(entityplayer.getCurrentEquippedItem() != null )
+		if(!world.isRemote && entityplayer.getCurrentEquippedItem() != null )
 		{
 			Item itemID = entityplayer.getCurrentEquippedItem().getItem();
 
 			if (entityplayer.capabilities.isCreativeMode && itemID == Items.blaze_rod)
 			{
-//				tileengine.energy += tileengine.getMaxEnergy() / 8;
-                tileengine.heat += (TileEngine.MAX_HEAT - TileEngine.MIN_HEAT) / 8;
+				tileengine.energy += tileengine.getMaxEnergy() / 8;
+//                tileengine.heat += (TileEngine.MAX_HEAT - TileEngine.MIN_HEAT);
+                entityplayer.addChatMessage(new ChatComponentText("Heat Up!"));
 				return true;
 			}
 		}
