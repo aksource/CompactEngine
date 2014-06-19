@@ -1,14 +1,18 @@
 package compactengine;
 
+import compactengine.block.BlockCompactEngine;
+import compactengine.item.ItemCompactEngine;
+import compactengine.tileentity.TileCompactEngine128;
+import compactengine.tileentity.TileCompactEngine32;
+import compactengine.tileentity.TileCompactEngine512;
+import compactengine.tileentity.TileCompactEngine8;
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.fluids.Fluid;
 import buildcraft.BuildCraftCore;
 import buildcraft.BuildCraftEnergy;
 import buildcraft.BuildCraftSilicon;
@@ -21,7 +25,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid="CompactEngine", name="CompactEngine", version="build 6(for mc1.7.2 bc5.0.3  Forge#1024 )", dependencies ="required-after:BuildCraft|Energy", useMetadata = true)
+@Mod(modid="CompactEngine", name="CompactEngine", version="@VERSION@", dependencies ="required-after:BuildCraft|Energy", useMetadata = true)
 public class CompactEngine
 {
 	@Instance("CompactEngine")
@@ -29,8 +33,8 @@ public class CompactEngine
 	@SidedProxy(clientSide = "compactengine.Client.ClientProxy", serverSide = "compactengine.CommonProxy")
 	public static CommonProxy proxy;
 
-	public static BlockCompactEngine engineBlock;
-//	public static ItemBlock engineItem;
+	public static Block engineBlock;
+	public static Item engineItem;
 	public static Item energyChecker;
 //	private static Fluid buildcraftFluidOil;
 
@@ -63,7 +67,7 @@ public class CompactEngine
 		neverExplosion = config.get(Configuration.CATEGORY_GENERAL, "neverExplosion", false, "Engine No Explosion").getBoolean(false);
 //		OilFlowingSpeed = config.get(Configuration.CATEGORY_GENERAL, "OilFlowingSpeed", 20, "Change OilFlowingSpeed. Default:20tick").getInt();
 		config.save();
-		engineBlock =new BlockCompactEngine();
+		engineBlock =new BlockCompactEngine().setResistance(10.0f).setBlockName("CompactEngine:CompactEngineWood").setBlockTextureName("buildcraft:engineWoodBottom");
 		GameRegistry.registerBlock(engineBlock, ItemCompactEngine.class, "compactengineblock");
 //		engineItem  = new ItemCompactEngine(engineBlock);
 //		GameRegistry.registerItem(engineItem, "compactengineitem");
