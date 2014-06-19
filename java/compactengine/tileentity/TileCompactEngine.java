@@ -1,23 +1,22 @@
-package compactengine;
+package compactengine.tileentity;
 
-import cpw.mods.fml.common.FMLCommonHandler;
+import buildcraft.api.transport.IPipeTile.PipeType;
+import buildcraft.energy.TileEngine;
+import compactengine.CompactEngine;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.ForgeDirection;
-import buildcraft.api.transport.IPipeTile.PipeType;
-import buildcraft.core.proxy.CoreProxy;
-import buildcraft.energy.TileEngine;
 
 public class TileCompactEngine extends TileEngine {
 
 	public static final float OUTPUT = 8f / 20f * 1.25f;
-	public static final ResourceLocation Compact1_TEXTURE = new ResourceLocation("compactengine", "textures/blocks/base_wood1.png");
-	public static final ResourceLocation Compact2_TEXTURE = new ResourceLocation("compactengine", "textures/blocks/base_wood2.png");
-	public static final ResourceLocation Compact3_TEXTURE = new ResourceLocation("compactengine", "textures/blocks/base_wood3.png");
-	public static final ResourceLocation Compact4_TEXTURE = new ResourceLocation("compactengine", "textures/blocks/base_wood4.png");
-	public static final ResourceLocation Compact5_TEXTURE = new ResourceLocation("compactengine", "textures/blocks/base_wood5.png");
-	public static final ResourceLocation[] Res = new ResourceLocation[]{Compact1_TEXTURE,Compact2_TEXTURE,Compact3_TEXTURE,Compact4_TEXTURE,Compact5_TEXTURE};
+	public static final ResourceLocation Compact1_BASE_TEXTURE = new ResourceLocation("compactengine", "textures/blocks/base_wood1.png");
+	public static final ResourceLocation Compact2_BASE_TEXTURE = new ResourceLocation("compactengine", "textures/blocks/base_wood2.png");
+	public static final ResourceLocation Compact3_BASE_TEXTURE = new ResourceLocation("compactengine", "textures/blocks/base_wood3.png");
+	public static final ResourceLocation Compact4_BASE_TEXTURE = new ResourceLocation("compactengine", "textures/blocks/base_wood4.png");
+	public static final ResourceLocation Compact5_BASE_TEXTURE = new ResourceLocation("compactengine", "textures/blocks/base_wood5.png");
+	public static final ResourceLocation[] Res = new ResourceLocation[]{Compact1_BASE_TEXTURE, Compact2_BASE_TEXTURE, Compact3_BASE_TEXTURE, Compact4_BASE_TEXTURE, Compact5_BASE_TEXTURE};
 	public float power;		//1tickごとのエネルギー生産量、圧縮レベル÷20ｘ1.25（赤ピストンで釣り合うように）
 	public int no;				//テクスチャ番号
 	public int level;			//圧縮レベル8～2048
@@ -54,10 +53,16 @@ public class TileCompactEngine extends TileEngine {
 		alertTime = alert * 60 * 20;
 		this.stageRed = (250.0D * this.level);
 	}
-	@Override
-	public ResourceLocation getTextureFile() {
-		return Res[no];
-	}
+
+    @Override
+    public ResourceLocation getBaseTexture() {
+        return Res[no];
+    }
+
+    @Override
+    public ResourceLocation getChamberTexture() {
+        return TileEngine.CHAMBER_TEXTURES[0];
+    }
 
 	@Override
 	public float explosionRange() {

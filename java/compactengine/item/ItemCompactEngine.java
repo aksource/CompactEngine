@@ -1,4 +1,4 @@
-package compactengine;
+package compactengine.item;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.resources.I18n;
@@ -35,7 +35,7 @@ public class ItemCompactEngine extends ItemEngine
     @Override
 	public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int metadata)
 	{
-    	Block blockID = ((ItemBlock)this).field_150939_a;
+    	Block blockID = this.field_150939_a;
 		if (!world.setBlock(x, y, z, blockID, metadata, 3))
 		{
 			return false;

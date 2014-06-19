@@ -1,9 +1,14 @@
-package compactengine;
+package compactengine.block;
 
 import java.util.List;
 
 import buildcraft.energy.BlockEngine;
 import buildcraft.energy.TileEngine;
+import compactengine.*;
+import compactengine.tileentity.TileCompactEngine128;
+import compactengine.tileentity.TileCompactEngine32;
+import compactengine.tileentity.TileCompactEngine512;
+import compactengine.tileentity.TileCompactEngine8;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,17 +27,14 @@ public class BlockCompactEngine extends BlockEngine
 {
 	private static IIcon woodTexture;
 
-    public BlockCompactEngine()
-    {
-        super();
-        this.setResistance(10.0f);
-        setBlockName("CompactEngine:CompactEngineWood");
-        setBlockTextureName("buildcraft:engineWoodBottom");
-    }
-//	@Override
-//	public TileEntity createNewTileEntity(World world) {
-//		return null;
-//	}
+//    public BlockCompactEngine()
+//    {
+//        super();
+//        this.setResistance(10.0f);
+//        setBlockName("CompactEngine:CompactEngineWood");
+//        setBlockTextureName("buildcraft:engineWoodBottom");
+//    }
+
     @Override
     public TileEntity createTileEntity(World world, int metadata)
     {
@@ -49,7 +51,8 @@ public class BlockCompactEngine extends BlockEngine
 //            return new TileCompactEngine2048();
     }
     @Override
-	public void getSubBlocks(Item blockid, CreativeTabs par2CreativeTabs, List arraylist)
+    @SuppressWarnings("unchecked")
+	public void getSubBlocks(Item item, CreativeTabs par2CreativeTabs, List arraylist)
 	{
         arraylist.add(new ItemStack(this, 1, 0));
         arraylist.add(new ItemStack(this, 1, 1));
@@ -91,17 +94,12 @@ public class BlockCompactEngine extends BlockEngine
 //		tile.switchOrientation();
 	}
 
-//    public String getBlockName()
-//    {
-//        return "tile.CompactEngineWood";
-//    }
-
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public void registerBlockIcons(IIconRegister par1IconRegister)
-//	{
-//		woodTexture = par1IconRegister.registerIcon("buildcraft:engineWoodBottom");
-//	}
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void registerBlockIcons(IIconRegister par1IconRegister)
+	{
+		woodTexture = par1IconRegister.registerIcon("buildcraft:engineWoodBottom");
+	}
 //
 	@Override
 	@SideOnly(Side.CLIENT)

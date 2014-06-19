@@ -1,4 +1,4 @@
-package compactengine;
+package compactengine.tileentity;
 
 
 public class TileCompactEngine32 extends TileCompactEngine {

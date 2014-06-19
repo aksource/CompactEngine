@@ -1,5 +1,6 @@
-package compactengine;
+package compactengine.item;
 
+import compactengine.CompactEngine;
 import net.minecraft.block.Block;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
@@ -24,7 +25,7 @@ public class ItemEnergyChecker extends Item
 	public ItemEnergyChecker()
 	{
 		super();
-		setCreativeTab(CreativeTabBuildCraft.MACHINES.get());
+		setCreativeTab(CreativeTabBuildCraft.ITEMS.get());
 	}
     @Override
 	public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ)
@@ -47,10 +48,10 @@ public class ItemEnergyChecker extends Item
 //				}
 
 				CompactEngine.addChat(
-					I18n.format("energyChecker.maxPower") + ": %1.2f MJ/t  " +
-							I18n.format("energyChecker.energy") + ": %1.0f / %d MJ  " +
-							I18n.format("energyChecker.heat") + ": %d\u00B0C / %d\u00B0C"
-					, engine.getCurrentOutput(), engine.getEnergyStored(), MathHelper.ceiling_double_int(engine.getMaxEnergy()), MathHelper.ceiling_float_int(engine.getHeat()), MathHelper.ceiling_double_int(TileEngine.MAX_HEAT));
+                        I18n.format("energyChecker.maxPower") + ": %1.2f MJ/t  " +
+                                I18n.format("energyChecker.energy") + ": %1.0f / %d MJ  " +
+                                I18n.format("energyChecker.heat") + ": %d\u00B0C / %d\u00B0C"
+                        , engine.getCurrentOutput(), engine.getEnergyStored(), MathHelper.ceiling_double_int(engine.getMaxEnergy()), MathHelper.ceiling_float_int(engine.getHeat()), MathHelper.ceiling_double_int(TileEngine.MAX_HEAT));
 				return true;
 			}
 			else if(tile instanceof IPowerReceptor && (
