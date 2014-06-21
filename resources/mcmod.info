@@ -7,7 +7,7 @@
   "mcversion": "${mcversion}",
   "url": "http://forum.minecraftuser.jp/viewtopic.php?f=13&t=6672",
   "updateUrl": "",
-  "authors": [
+  "authorList": [
     "takanasayo"
   ],
   "credits": "Updated to mc172 By A.K.",
