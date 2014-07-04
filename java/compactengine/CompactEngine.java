@@ -1,22 +1,16 @@
 package compactengine;
 
+import buildcraft.BuildCraftCore;
+import buildcraft.BuildCraftEnergy;
+import buildcraft.BuildCraftSilicon;
+import buildcraft.transport.gates.GateDefinition;
+import buildcraft.transport.gates.ItemGate;
 import compactengine.block.BlockCompactEngine;
 import compactengine.item.ItemCompactEngine;
 import compactengine.tileentity.TileCompactEngine128;
 import compactengine.tileentity.TileCompactEngine32;
 import compactengine.tileentity.TileCompactEngine512;
 import compactengine.tileentity.TileCompactEngine8;
-import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.ChatComponentText;
-import net.minecraftforge.common.config.Configuration;
-import buildcraft.BuildCraftCore;
-import buildcraft.BuildCraftEnergy;
-import buildcraft.BuildCraftSilicon;
-import buildcraft.BuildCraftTransport;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Instance;
@@ -24,6 +18,13 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.ChatComponentText;
+import net.minecraftforge.common.config.Configuration;
 
 @Mod(modid="CompactEngine", name="CompactEngine", version="@VERSION@", dependencies ="required-after:BuildCraft|Energy", useMetadata = true)
 public class CompactEngine
@@ -100,8 +101,8 @@ public class CompactEngine
 		ItemStack ironGear = new ItemStack(BuildCraftCore.ironGearItem);
 		ItemStack diaGear = new ItemStack(BuildCraftCore.diamondGearItem);
 		ItemStack diaChip = new ItemStack(BuildCraftSilicon.redstoneChipset, 1, 3);
-		ItemStack goldORGate = new ItemStack(BuildCraftTransport.pipeGate, 1, 4);
-		ItemStack diaORGate = new ItemStack(BuildCraftTransport.pipeGate, 1, 6);
+		ItemStack goldORGate = ItemGate.makeGateItem(GateDefinition.GateMaterial.GOLD, GateDefinition.GateLogic.OR);
+//		ItemStack diaORGate = ItemGate.makeGateItem(GateDefinition.GateMaterial.DIAMOND, GateDefinition.GateLogic.OR);
 
 		GameRegistry.addRecipe(engine1, "www", "wgw", "www", 'w', woodEngine, 'g', ironGear);
 		GameRegistry.addRecipe(engine2, "geg", "eie", "geg", 'e', engine1, 'g', diaGear, 'i', ironEngine);
@@ -109,8 +110,9 @@ public class CompactEngine
 
 		if(isAddCompactEngine512and2048)
 		{
-			GameRegistry.addRecipe(engine4, "geg", "eie", "geg", 'e', engine3, 'g', goldORGate, 'i', ironEngine);
-//			GameRegistry.addRecipe(engine5, "geg", "eie", "geg", 'e', engine4, 'g', diaORGate, 'i', ironEngine);
+//			GameRegistry.addRecipe(engine4, "geg", "eie", "geg", 'e', engine3, 'g', goldORGate, 'i', ironEngine);
+            GameRegistry.addRecipe(new ExtendedShapedRecipe(engine4, "geg", "eie", "geg", 'e', engine3, 'g', goldORGate, 'i', ironEngine));
+//			GameRegistry.addRecipe(new ExtendedShapedRecipe(engine5, "geg", "eie", "geg", 'e', engine4, 'g', diaORGate, 'i', ironEngine));
 		}
 //		GameRegistry.addRecipe(new ItemStack(energyChecker), new Object[]{"w", "i",
 //			'w', BuildCraftTransport.pipePowerWood, 'i', Items.iron_ingot});
