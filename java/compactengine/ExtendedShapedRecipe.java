@@ -149,8 +149,9 @@ public class ExtendedShapedRecipe extends ShapedRecipes {
                     {
                         return false;
                     }
-
-                    return itemstack.isItemEqual(itemstack1) && ItemStack.areItemStackTagsEqual(itemstack, itemstack1);
+                    if (!itemstack.isItemEqual(itemstack1) || !ItemStack.areItemStackTagsEqual(itemstack, itemstack1)) {
+                        return false;
+                    }
                 }
             }
         }
