@@ -1,16 +1,15 @@
 package compactengine.item;
 
+import buildcraft.api.core.Position;
+import buildcraft.energy.ItemEngine;
+import buildcraft.energy.TileEngine;
 import net.minecraft.block.Block;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-import buildcraft.api.core.Position;
-import buildcraft.energy.ItemEngine;
-import buildcraft.energy.TileEngine;
 
 public class ItemCompactEngine extends ItemEngine
 {

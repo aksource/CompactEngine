@@ -1,14 +1,14 @@
 package compactengine.block;
 
-import java.util.List;
-
 import buildcraft.energy.BlockEngine;
 import buildcraft.energy.TileEngine;
-import compactengine.*;
+import compactengine.CompactEngine;
 import compactengine.tileentity.TileCompactEngine128;
 import compactengine.tileentity.TileCompactEngine32;
 import compactengine.tileentity.TileCompactEngine512;
 import compactengine.tileentity.TileCompactEngine8;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,8 +20,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.List;
 
 public class BlockCompactEngine extends BlockEngine
 {

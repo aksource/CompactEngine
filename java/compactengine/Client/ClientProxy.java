@@ -1,17 +1,15 @@
 package compactengine.Client;
 
-import compactengine.tileentity.TileCompactEngine;
-import net.minecraft.world.World;
 import buildcraft.core.render.RenderingEntityBlocks;
 import buildcraft.core.render.RenderingEntityBlocks.EntityRenderIndex;
 import buildcraft.energy.TileEngine;
 import buildcraft.energy.render.RenderEngine;
-
 import compactengine.CommonProxy;
 import compactengine.CompactEngine;
-
+import compactengine.tileentity.TileCompactEngine;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
+import net.minecraft.world.World;
 
 public class ClientProxy extends CommonProxy
 {

@@ -1,5 +1,9 @@
 package compactengine.item;
 
+import buildcraft.api.power.IPowerReceptor;
+import buildcraft.api.power.PowerHandler.PowerReceiver;
+import buildcraft.core.CreativeTabBuildCraft;
+import buildcraft.energy.TileEngine;
 import compactengine.CompactEngine;
 import net.minecraft.block.Block;
 import net.minecraft.client.resources.I18n;
@@ -10,15 +14,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-import buildcraft.api.power.IPowerReceptor;
-import buildcraft.api.power.PowerHandler.PowerReceiver;
-import buildcraft.core.CreativeTabBuildCraft;
-import buildcraft.energy.TileEngine;
-import buildcraft.transport.PipeTransport;
-import buildcraft.transport.PipeTransportPower;
-import buildcraft.transport.TileGenericPipe;
-import buildcraft.transport.pipes.PipePowerWood;
-import cpw.mods.fml.common.ObfuscationReflectionHelper;
 
 public class ItemEnergyChecker extends Item
 {
