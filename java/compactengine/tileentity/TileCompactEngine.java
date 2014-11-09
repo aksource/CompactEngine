@@ -5,6 +5,7 @@ import buildcraft.energy.TileEngine;
 import compactengine.CompactEngine;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.ForgeDirection;
 
@@ -17,7 +18,7 @@ public class TileCompactEngine extends TileEngine {
 	public static final ResourceLocation Compact4_BASE_TEXTURE = new ResourceLocation("compactengine", "textures/blocks/base_wood4.png");
 	public static final ResourceLocation Compact5_BASE_TEXTURE = new ResourceLocation("compactengine", "textures/blocks/base_wood5.png");
 	public static final ResourceLocation[] Res = new ResourceLocation[]{Compact1_BASE_TEXTURE, Compact2_BASE_TEXTURE, Compact3_BASE_TEXTURE, Compact4_BASE_TEXTURE, Compact5_BASE_TEXTURE};
-	public float power;		//1tickごとのエネルギー生産量、圧縮レベル÷20ｘ1.25（赤ピストンで釣り合うように）
+	public int power;		//1tickごとのエネルギー生産量、圧縮レベル÷20ｘ1.25（赤ピストンで釣り合うように）
 	public int no;				//テクスチャ番号
 	public int level;			//圧縮レベル8～2048
 	public int limitTime;		//爆発までの猶予tick
@@ -47,7 +48,7 @@ public class TileCompactEngine extends TileEngine {
 	{
 		level = powerLevel[meta];
 		no = meta;
-		power = level / 20f * 1.25f;
+		power = MathHelper.ceiling_float_int(level / 20f * 1.25f);
 		this.limitTime = (explosionTimes[explosionTime][meta] * 20 * 60);
 		this.time = this.limitTime;
 		alertTime = alert * 60 * 20;
@@ -70,12 +71,12 @@ public class TileCompactEngine extends TileEngine {
 	}
 
 	@Override
-	public double minEnergyReceived() {
+	public int minEnergyReceived() {
 		return 0;
 	}
 
 	@Override
-	public double maxEnergyReceived() {
+	public int maxEnergyReceived() {
 		return 50 * level;
 	}
 
@@ -176,7 +177,7 @@ public class TileCompactEngine extends TileEngine {
 	@Override
 	protected void burn() {
 		if (this.isRedstonePowered) {
-			float output = power;
+			int output = power;
 			currentOutput = output; // Comment out for constant power
 			if(time <= 0 || energy > getMaxEnergy() + power)
 			{
@@ -189,23 +190,23 @@ public class TileCompactEngine extends TileEngine {
 			addEnergy(output);
 		}
 	}
-	@Override
-	public int getScaledBurnTime(int i) {
-		return 0;
-	}
+//	@Override
+//	public int getScaledBurnTime(int i) {
+//		return 0;
+//	}
 
 	@Override
-	public double getMaxEnergy() {
+	public int getMaxEnergy() {
 		return 1000 * level;
 	}
 
 	@Override
-	public double getCurrentOutput() {
+	public int getCurrentOutput() {
 		return power;
 	}
 
 	@Override
-	public double maxEnergyExtracted() {
+	public int maxEnergyExtracted() {
 		return level / 2;
 	}
 	//爆発タイマーをNBTに保存／呼び出し
