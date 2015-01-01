@@ -65,7 +65,7 @@ public class TileCompactEngine extends TileEngine {
         return TileEngine.CHAMBER_TEXTURES[0];
     }
 
-	@Override
+//	@Override
 	public float explosionRange() {
 		return explosionRanges[explosionPower][no];
 	}
@@ -200,8 +200,13 @@ public class TileCompactEngine extends TileEngine {
 		return 1000 * level;
 	}
 
+//	@Override
+//	public int getCurrentOutput() {
+//		return power;
+//	}
+
 	@Override
-	public int getCurrentOutput() {
+	public int calculateCurrentOutput() {
 		return power;
 	}
 
