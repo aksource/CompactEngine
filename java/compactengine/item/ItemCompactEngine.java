@@ -4,10 +4,10 @@ import buildcraft.api.core.Position;
 import buildcraft.energy.ItemEngine;
 import buildcraft.energy.TileEngine;
 import net.minecraft.block.Block;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
@@ -28,7 +28,7 @@ public class ItemCompactEngine extends ItemEngine
     @Override
     public String getItemStackDisplayName(ItemStack par1ItemStack)
     {
-        return (I18n.format(this.getUnlocalizedName(par1ItemStack)));
+        return StatCollector.translateToLocal(this.getUnlocalizedName(par1ItemStack));
     }
 
     @Override
