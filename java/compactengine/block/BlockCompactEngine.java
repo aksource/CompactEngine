@@ -68,15 +68,18 @@ public class BlockCompactEngine extends BlockEngine
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer entityplayer, int par6, float par7, float par8, float par9)
     {
         TileEngine tileengine = (TileEngine)world.getTileEntity(x, y, z);
-
+//		if (!world.isRemote) {
+//			double heat = tileengine.getCurrentHeatValue();
+//			CompactEngine.addChat("Now Heat:%f℃", heat);
+//		}
 		if(!world.isRemote && entityplayer.getCurrentEquippedItem() != null )
 		{
 			Item itemID = entityplayer.getCurrentEquippedItem().getItem();
 
 			if (entityplayer.capabilities.isCreativeMode && itemID == Items.blaze_rod)
 			{
-				tileengine.energy += tileengine.getMaxEnergy() / 8;
-//                tileengine.heat += (TileEngine.MAX_HEAT - TileEngine.MIN_HEAT);
+//				tileengine.energy += tileengine.getMaxEnergy() / 8;
+                tileengine.heat += 25F/*(TileEngine.MAX_HEAT - TileEngine.MIN_HEAT)*/;
                 entityplayer.addChatMessage(new ChatComponentText("Heat Up!"));
 				return true;
 			}

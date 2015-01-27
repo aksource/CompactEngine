@@ -7,11 +7,13 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileCompactEngine extends TileEngine {
 
 	public static final float OUTPUT = 8f / 20f * 1.25f;
+	public static final float HEAT_BASE = 0.025F;
 	public static final ResourceLocation Compact1_BASE_TEXTURE = new ResourceLocation("compactengine", "textures/blocks/base_wood1.png");
 	public static final ResourceLocation Compact2_BASE_TEXTURE = new ResourceLocation("compactengine", "textures/blocks/base_wood2.png");
 	public static final ResourceLocation Compact3_BASE_TEXTURE = new ResourceLocation("compactengine", "textures/blocks/base_wood3.png");
@@ -48,7 +50,7 @@ public class TileCompactEngine extends TileEngine {
 	{
 		level = powerLevel[meta];
 		no = meta;
-		power = MathHelper.ceiling_float_int(level / 20f * 1.25f);
+		power = MathHelper.ceiling_float_int(level * 0.5F);
 		this.limitTime = (explosionTimes[explosionTime][meta] * 20 * 60);
 		this.time = this.limitTime;
 		alertTime = alert * 60 * 20;
@@ -80,15 +82,22 @@ public class TileCompactEngine extends TileEngine {
 		return 50 * level;
 	}
 
-    @Override
-	public float getHeatLevel() {
-		return this.energy >= this.getMaxEnergy() - this.stageRed ?
-				(int)(this.getMaxEnergy() - this.stageRed * ((double)this.time / this.limitTime)) : (int)this.energy;
+//    @Override
+//	public float getHeatLevel() {
+//		return this.energy >= this.getMaxEnergy() - this.stageRed ?
+//				(int)(this.getMaxEnergy() - this.stageRed * ((double)this.time / this.limitTime)) : (int)this.energy;
+//	}
+
+	@Override
+	public void updateHeat() {
+		if (!isRedstonePowered) {
+			this.heat -= HEAT_BASE * 20;
+		}
 	}
 
 	@Override
 	protected EnergyStage computeEnergyStage() {
-		double energyLevel = getEnergyLevel();
+		double energyLevel = getHeatLevel();
 		if (energyLevel < 0.25d)
 			return EnergyStage.BLUE;
 		else if (energyLevel < 0.5d)
@@ -143,26 +152,27 @@ public class TileCompactEngine extends TileEngine {
 				time--;
 				if(alert != 0 && time == alertTime)
 				{
-					CompactEngine.addChat(I18n.format("engine.alert")
+					CompactEngine.addChat(StatCollector.translateToLocal("engine.alert")
 						, level, alert, xCoord, yCoord, zCoord);
 				}
-/*
 				if(time <= 0 || energy > getMaxEnergy() + power)
 				{
 
 					//エネルギーステージ判定
 					computeEnergyStage();
+
 					//爆発メッセージ表示
-					CompactEngine.addChat(I18n.getString("engine.explode")
+					CompactEngine.addChat(StatCollector.translateToLocal("engine.explode")
 						, explosionRange(), xCoord, yCoord, zCoord);
 					//エネルギー加算メソッド経由で、BCの爆発処理を呼び出す
 					addEnergy(0);
-				}else{
-				}*/
+				}
 			}else{
 				this.time = this.limitTime;
 			}
 		}
+
+		this.heat = MathHelper.clamp_float(this.heat, MIN_HEAT, MAX_HEAT);
 	}
 
 	@Override
@@ -187,6 +197,7 @@ public class TileCompactEngine extends TileEngine {
 				CompactEngine.addChat(I18n.format("engine.explode")
 					, explosionRange(), xCoord, yCoord, zCoord);
 			}
+			this.heat += HEAT_BASE;
 			addEnergy(output);
 		}
 	}
@@ -197,7 +208,7 @@ public class TileCompactEngine extends TileEngine {
 
 	@Override
 	public int getMaxEnergy() {
-		return 1000 * level;
+		return 100 * maxEnergyExtracted();
 	}
 
 //	@Override
@@ -212,7 +223,7 @@ public class TileCompactEngine extends TileEngine {
 
 	@Override
 	public int maxEnergyExtracted() {
-		return level / 2;
+		return level * 20;
 	}
 	//爆発タイマーをNBTに保存／呼び出し
 	@Override
