@@ -7,8 +7,8 @@ import buildcraft.energy.render.RenderEngine;
 import compactengine.CommonProxy;
 import compactengine.CompactEngine;
 import compactengine.tileentity.TileCompactEngine;
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraft.world.World;
 
 public class ClientProxy extends CommonProxy

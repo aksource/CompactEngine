@@ -167,7 +167,7 @@ public class TileCompactEngine extends TileEngine {
 
 	@Override
 	public ConnectOverride overridePipeConnection(PipeType type, ForgeDirection with) {
-		return ConnectOverride.CONNECT;
+		return (type == PipeType.POWER) ? ConnectOverride.CONNECT : ConnectOverride.DISCONNECT;
 	}
 
 	@Override
