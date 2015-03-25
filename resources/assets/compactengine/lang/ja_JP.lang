@@ -11,5 +11,5 @@ energyChecker.energy=熱量
 energyChecker.workEnergy=受入限界
 energyChecker.pipeEnergy=流量
 energyChecker.heat=温度
-engine.alert=s倍圧縮木エンジンがあと%d分で爆発します。  座標 x:%d y:%d z:%d
+engine.alert=%s倍圧縮木エンジンがあと%d分で爆発します。  座標 x:%d y:%d z:%d
 engine.explode=爆発力%sの圧縮木エンジンが爆発しました。  座標 x:%d y:%d z:%d
