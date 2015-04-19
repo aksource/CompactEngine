@@ -202,8 +202,8 @@ public class TileCompactEngine extends TileEngine {
 
     @Override
     public void overheat() {
-        this.worldObj.createExplosion(null, this.xCoord, this.yCoord, this.zCoord, getExplosionRange(), true);
         this.worldObj.setBlockToAir(this.xCoord, this.yCoord, this.zCoord);
+        this.worldObj.createExplosion(null, this.xCoord, this.yCoord, this.zCoord, getExplosionRange(), true);
     }
 
     @Override
