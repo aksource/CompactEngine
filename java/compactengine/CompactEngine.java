@@ -95,8 +95,8 @@ public class CompactEngine {
         GameRegistry.registerTileEntity(TileCompactEngine512.class, "tile.compactengine512");
 //        GameRegistry.registerTileEntity(TileCompactEngine2048.class, "tile.compactengine2048");
 
-        ItemStack woodEngine = new ItemStack(BuildCraftEnergy.engineBlock, 1, 0);
-        ItemStack ironEngine = new ItemStack(BuildCraftEnergy.engineBlock, 1, 2);
+        ItemStack woodEngine = new ItemStack(BuildCraftCore.engineBlock, 1, 0);
+        ItemStack ironEngine = new ItemStack(BuildCraftCore.engineBlock, 1, 2);
         ItemStack ironGear = new ItemStack(BuildCraftCore.ironGearItem);
         ItemStack diaGear = new ItemStack(BuildCraftCore.diamondGearItem);
         ItemStack diaChip = new ItemStack(BuildCraftSilicon.redstoneChipset, 1, 3);

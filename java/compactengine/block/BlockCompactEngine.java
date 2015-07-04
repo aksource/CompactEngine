@@ -1,7 +1,8 @@
 package compactengine.block;
 
-import buildcraft.energy.BlockEngine;
-import buildcraft.energy.TileEngine;
+
+import buildcraft.core.BlockEngine;
+import buildcraft.core.lib.engines.TileEngineBase;
 import compactengine.CompactEngine;
 import compactengine.tileentity.*;
 import cpw.mods.fml.relauncher.Side;
@@ -62,7 +63,7 @@ public class BlockCompactEngine extends BlockEngine {
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer entityplayer, int par6, float par7, float par8, float par9) {
-        TileEngine tileengine = (TileEngine) world.getTileEntity(x, y, z);
+        TileEngineBase tileengine = (TileEngineBase) world.getTileEntity(x, y, z);
 //		if (!world.isRemote) {
 //			double heat = tileengine.getCurrentHeatValue();
 //			CompactEngine.addChat("Now Heat:%f℃", heat);

@@ -1,7 +1,7 @@
 package compactengine.tileentity;
 
 import buildcraft.api.transport.IPipeTile.PipeType;
-import buildcraft.energy.TileEngine;
+import buildcraft.core.lib.engines.TileEngineBase;
 import compactengine.CompactEngine;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
@@ -9,7 +9,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class TileCompactEngine extends TileEngine {
+public class TileCompactEngine extends TileEngineBase {
 
     public static final float OUTPUT = 8f / 20f * 1.25f;
     public static final float HEAT_BASE = 0.025F;
@@ -63,7 +63,12 @@ public class TileCompactEngine extends TileEngine {
 
     @Override
     public ResourceLocation getChamberTexture() {
-        return TileEngine.CHAMBER_TEXTURES[0];
+        return super.getChamberTexture();
+    }
+
+    @Override
+    public String getResourcePrefix() {
+        return "buildcraftcore:textures/blocks/engineWood";
     }
 
     //	@Override
