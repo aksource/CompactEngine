@@ -4,7 +4,10 @@ package compactengine.block;
 import buildcraft.core.BlockEngine;
 import buildcraft.core.lib.engines.TileEngineBase;
 import compactengine.CompactEngine;
-import compactengine.tileentity.*;
+import compactengine.tileentity.TileCompactEngine128;
+import compactengine.tileentity.TileCompactEngine32;
+import compactengine.tileentity.TileCompactEngine512;
+import compactengine.tileentity.TileCompactEngine8;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -94,10 +97,10 @@ public class BlockCompactEngine extends BlockEngine {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister par1IconRegister) {
-        woodTexture = par1IconRegister.registerIcon("buildcraft:engineWoodBottom");
+        super.registerBlockIcons(par1IconRegister);
+        woodTexture = par1IconRegister.registerIcon("buildcraftcore:engineBlock/default");
     }
 
-    //
     @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
