@@ -4,10 +4,7 @@ package compactengine.block;
 import buildcraft.core.BlockEngine;
 import buildcraft.core.lib.engines.TileEngineBase;
 import compactengine.CompactEngine;
-import compactengine.tileentity.TileCompactEngine128;
-import compactengine.tileentity.TileCompactEngine32;
-import compactengine.tileentity.TileCompactEngine512;
-import compactengine.tileentity.TileCompactEngine8;
+import compactengine.tileentity.*;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -24,7 +21,7 @@ import net.minecraft.world.World;
 import java.util.List;
 
 public class BlockCompactEngine extends BlockEngine {
-    private static IIcon woodTexture;
+    private IIcon woodIcon;
 
     @Override
     public TileEntity createTileEntity(World world, int metadata) {
@@ -43,6 +40,9 @@ public class BlockCompactEngine extends BlockEngine {
         if (metadata == 3) {
             return new TileCompactEngine512();
         }
+        if (metadata == 4) {
+            return new TileCompactEngine2048();
+        }
 
         return new TileCompactEngine8();
 /*        if (metadata >= 0 && metadata <= 3*//*4*//*) {
@@ -59,7 +59,7 @@ public class BlockCompactEngine extends BlockEngine {
         arraylist.add(new ItemStack(this, 1, 2));
         if (CompactEngine.isAddCompactEngine512and2048) {
             arraylist.add(new ItemStack(this, 1, 3));
-//	        arraylist.add(new ItemStack(this, 1, 4));
+	        arraylist.add(new ItemStack(this, 1, 4));
         }
 //        arraylist.add(new ItemStack(this, 1, 5));
     }
@@ -98,13 +98,17 @@ public class BlockCompactEngine extends BlockEngine {
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister par1IconRegister) {
         super.registerBlockIcons(par1IconRegister);
-        woodTexture = par1IconRegister.registerIcon("buildcraftcore:engineBlock/default");
+        woodIcon = par1IconRegister.registerIcon("buildcraftcore:engineWood/icon");
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
-        return woodTexture;
+        return woodIcon;
     }
 
+    @Override
+    public String getTexturePrefix(int meta, boolean addPrefix) {
+        return "buildcraftcore:textures/blocks/engineWood";//"buildcraftcore:textures/blocks/engineWood"
+    }
 }

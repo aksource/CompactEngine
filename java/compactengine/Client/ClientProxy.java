@@ -22,10 +22,12 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void registerTileEntitySpecialRenderer() {
         ClientRegistry.bindTileEntitySpecialRenderer(TileCompactEngine.class, new RenderEngine());
-        RenderingEntityBlocks.blockByEntityRenders.put(new EntityRenderIndex(CompactEngine.engineBlock, 0), new RenderEngine(TileCompactEngine.Compact1_BASE_TEXTURE, chamberResourceLocation, TileEngineBase.TRUNK_BLUE_TEXTURE));
-        RenderingEntityBlocks.blockByEntityRenders.put(new EntityRenderIndex(CompactEngine.engineBlock, 1), new RenderEngine(TileCompactEngine.Compact2_BASE_TEXTURE, chamberResourceLocation, TileEngineBase.TRUNK_BLUE_TEXTURE));
-        RenderingEntityBlocks.blockByEntityRenders.put(new EntityRenderIndex(CompactEngine.engineBlock, 2), new RenderEngine(TileCompactEngine.Compact3_BASE_TEXTURE, chamberResourceLocation, TileEngineBase.TRUNK_BLUE_TEXTURE));
-        RenderingEntityBlocks.blockByEntityRenders.put(new EntityRenderIndex(CompactEngine.engineBlock, 3), new RenderEngine(TileCompactEngine.Compact4_BASE_TEXTURE, chamberResourceLocation, TileEngineBase.TRUNK_BLUE_TEXTURE));
+        for (int i = 0;i < 5; i++) {
+            RenderingEntityBlocks.blockByEntityRenders.put(new EntityRenderIndex(CompactEngine.engineBlock, i), new RenderEngine(CompactEngine.RESOURCE_LOCATION_LIST.get(i), chamberResourceLocation, TileEngineBase.TRUNK_BLUE_TEXTURE));
+        }
+//        RenderingEntityBlocks.blockByEntityRenders.put(new EntityRenderIndex(CompactEngine.engineBlock, 1), new RenderEngine(TileCompactEngine.Compact2_BASE_TEXTURE, chamberResourceLocation, TileEngineBase.TRUNK_BLUE_TEXTURE));
+//        RenderingEntityBlocks.blockByEntityRenders.put(new EntityRenderIndex(CompactEngine.engineBlock, 2), new RenderEngine(TileCompactEngine.Compact3_BASE_TEXTURE, chamberResourceLocation, TileEngineBase.TRUNK_BLUE_TEXTURE));
+//        RenderingEntityBlocks.blockByEntityRenders.put(new EntityRenderIndex(CompactEngine.engineBlock, 3), new RenderEngine(TileCompactEngine.Compact4_BASE_TEXTURE, chamberResourceLocation, TileEngineBase.TRUNK_BLUE_TEXTURE));
 //		RenderingEntityBlocks.blockByEntityRenders.put(new EntityRenderIndex(CompactEngine.engineBlock, 4), new RenderEngine(TileCompactEngine.CompactEngine.TEX + "base_wood5.png"));
     }
 

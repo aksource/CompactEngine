@@ -13,15 +13,15 @@ public class TileCompactEngine extends TileEngineBase {
 
     public static final float OUTPUT = 8f / 20f * 1.25f;
     public static final float HEAT_BASE = 0.025F;
-    public static final ResourceLocation Compact1_BASE_TEXTURE = new ResourceLocation("compactengine", "textures/blocks/base_wood1.png");
-    public static final ResourceLocation Compact2_BASE_TEXTURE = new ResourceLocation("compactengine", "textures/blocks/base_wood2.png");
-    public static final ResourceLocation Compact3_BASE_TEXTURE = new ResourceLocation("compactengine", "textures/blocks/base_wood3.png");
-    public static final ResourceLocation Compact4_BASE_TEXTURE = new ResourceLocation("compactengine", "textures/blocks/base_wood4.png");
-    public static final ResourceLocation Compact5_BASE_TEXTURE = new ResourceLocation("compactengine", "textures/blocks/base_wood5.png");
-    public static final ResourceLocation[] Res = new ResourceLocation[]{Compact1_BASE_TEXTURE, Compact2_BASE_TEXTURE, Compact3_BASE_TEXTURE, Compact4_BASE_TEXTURE, Compact5_BASE_TEXTURE};
+//    public static final ResourceLocation Compact1_BASE_TEXTURE = new ResourceLocation("compactengine", "textures/blocks/base_wood1.png");
+//    public static final ResourceLocation Compact2_BASE_TEXTURE = new ResourceLocation("compactengine", "textures/blocks/base_wood2.png");
+//    public static final ResourceLocation Compact3_BASE_TEXTURE = new ResourceLocation("compactengine", "textures/blocks/base_wood3.png");
+//    public static final ResourceLocation Compact4_BASE_TEXTURE = new ResourceLocation("compactengine", "textures/blocks/base_wood4.png");
+//    public static final ResourceLocation Compact5_BASE_TEXTURE = new ResourceLocation("compactengine", "textures/blocks/base_wood5.png");
+//    public static final ResourceLocation[] Res = new ResourceLocation[]{Compact1_BASE_TEXTURE, Compact2_BASE_TEXTURE, Compact3_BASE_TEXTURE, Compact4_BASE_TEXTURE, Compact5_BASE_TEXTURE};
     public int power;        //1tickごとのエネルギー生産量、圧縮レベル÷20ｘ1.25（赤ピストンで釣り合うように）
     public int no;                //テクスチャ番号
-    public int level;            //圧縮レベル8～2048
+    public int level;            //圧縮レベル8〜2048
     public int limitTime;        //爆発までの猶予tick
     public int time = 0;        //爆発破カウンター
     public int alertTime = 0;    //爆発警告タイマー設定
@@ -58,7 +58,7 @@ public class TileCompactEngine extends TileEngineBase {
 
     @Override
     public ResourceLocation getBaseTexture() {
-        return Res[no];
+        return CompactEngine.RESOURCE_LOCATION_LIST.get(no)/*Res[no]*/;
     }
 
     @Override
@@ -66,25 +66,25 @@ public class TileCompactEngine extends TileEngineBase {
         return super.getChamberTexture();
     }
 
-    @Override
-    public String getResourcePrefix() {
-        return "buildcraftcore:textures/blocks/engineWood";
-    }
+//    @Override
+//    public String getTexturePrefix() {
+//        return "buildcraftcore:textures/blocks/engineWood";
+//    }
 
     //	@Override
     public float getExplosionRange() {
         return explosionRanges[explosionPower][no];
     }
 
-    @Override
-    public int minEnergyReceived() {
-        return 0;
-    }
-
-    @Override
-    public int maxEnergyReceived() {
-        return 50 * level;
-    }
+//    @Override
+//    public int minEnergyReceived() {
+//        return 0;
+//    }
+//
+//    @Override
+//    public int maxEnergyReceived() {
+//        return 50 * level;
+//    }
 
 //    @Override
 //	public float getHeatLevel() {
@@ -213,18 +213,18 @@ public class TileCompactEngine extends TileEngineBase {
 
     @Override
     public int getMaxEnergy() {
-        return 100 * maxEnergyExtracted();
+        return 100 * level * 20;
     }
 
-    @Override
-    public int calculateCurrentOutput() {
-        return power;
-    }
+//    @Override
+//    public int calculateCurrentOutput() {
+//        return power;
+//    }
 
-    @Override
-    public int maxEnergyExtracted() {
-        return level * 20;
-    }
+//    @Override
+//    public int maxEnergyExtracted() {
+//        return level * 20;
+//    }
 
     //爆発タイマーをNBTに保存／呼び出し
     @Override
@@ -242,5 +242,10 @@ public class TileCompactEngine extends TileEngineBase {
     //将来的に機能拡張する際の予備、現在は未使用
     public int getTime() {
         return this.time;
+    }
+
+    @Override
+    public int getIdealOutput() {
+        return 0;
     }
 }

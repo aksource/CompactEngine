@@ -1,19 +1,14 @@
 package compactengine;
 
 import buildcraft.BuildCraftCore;
-import buildcraft.BuildCraftEnergy;
 import buildcraft.BuildCraftSilicon;
 import buildcraft.transport.gates.GateDefinition;
 import buildcraft.transport.gates.ItemGate;
 import compactengine.block.BlockCompactEngine;
 import compactengine.item.ItemCompactEngine;
-import compactengine.tileentity.TileCompactEngine128;
-import compactengine.tileentity.TileCompactEngine32;
-import compactengine.tileentity.TileCompactEngine512;
-import compactengine.tileentity.TileCompactEngine8;
+import compactengine.tileentity.*;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -24,12 +19,31 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Configuration;
 
-@Mod(modid = "CompactEngine", name = "CompactEngine", version = "@VERSION@", dependencies = "required-after:BuildCraft|Energy", useMetadata = true)
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+@Mod(modid = CompactEngine.MOD_ID,
+        name = CompactEngine.MOD_NAME,
+        version = CompactEngine.MOD_VERSION,
+        dependencies = CompactEngine.MOD_DEPENDENCIES,
+        useMetadata = true)
 public class CompactEngine {
-    @Instance("CompactEngine")
-    public static CompactEngine instance;
+    public static final String MOD_ID = "CompactEngine";
+    public static final String MOD_NAME = "CompactEngine";
+    public static final String MOD_VERSION = "@VERSION@";
+    public static final String MOD_DEPENDENCIES = "required-after:BuildCraft|Energy";
+    public static final List<String> TEXTURE_STRING_LIST = Arrays.asList(
+            "base_wood1",
+            "base_wood2",
+            "base_wood3",
+            "base_wood4",
+            "base_wood5");
+    public static final List<ResourceLocation> RESOURCE_LOCATION_LIST = new ArrayList<>();
+
     @SidedProxy(clientSide = "compactengine.Client.ClientProxy", serverSide = "compactengine.CommonProxy")
     public static CommonProxy proxy;
 
@@ -93,7 +107,7 @@ public class CompactEngine {
         GameRegistry.registerTileEntity(TileCompactEngine32.class, "tile.compactengine32");
         GameRegistry.registerTileEntity(TileCompactEngine128.class, "tile.compactengine128");
         GameRegistry.registerTileEntity(TileCompactEngine512.class, "tile.compactengine512");
-//        GameRegistry.registerTileEntity(TileCompactEngine2048.class, "tile.compactengine2048");
+        GameRegistry.registerTileEntity(TileCompactEngine2048.class, "tile.compactengine2048");
 
         ItemStack woodEngine = new ItemStack(BuildCraftCore.engineBlock, 1, 0);
         ItemStack ironEngine = new ItemStack(BuildCraftCore.engineBlock, 1, 2);
@@ -101,7 +115,7 @@ public class CompactEngine {
         ItemStack diaGear = new ItemStack(BuildCraftCore.diamondGearItem);
         ItemStack diaChip = new ItemStack(BuildCraftSilicon.redstoneChipset, 1, 3);
         ItemStack goldORGate = ItemGate.makeGateItem(GateDefinition.GateMaterial.GOLD, GateDefinition.GateLogic.OR);
-//		ItemStack diaORGate = ItemGate.makeGateItem(GateDefinition.GateMaterial.DIAMOND, GateDefinition.GateLogic.OR);
+		ItemStack diaORGate = ItemGate.makeGateItem(GateDefinition.GateMaterial.DIAMOND, GateDefinition.GateLogic.OR);
 
         GameRegistry.addRecipe(engine1, "www", "wgw", "www", 'w', woodEngine, 'g', ironGear);
         GameRegistry.addRecipe(engine2, "geg", "eie", "geg", 'e', engine1, 'g', diaGear, 'i', ironEngine);
@@ -110,7 +124,7 @@ public class CompactEngine {
         if (isAddCompactEngine512and2048) {
 //			GameRegistry.addRecipe(engine4, "geg", "eie", "geg", 'e', engine3, 'g', goldORGate, 'i', ironEngine);
             GameRegistry.addRecipe(new ExtendedShapedRecipe(engine4, "geg", "eie", "geg", 'e', engine3, 'g', goldORGate, 'i', ironEngine));
-//			GameRegistry.addRecipe(new ExtendedShapedRecipe(engine5, "geg", "eie", "geg", 'e', engine4, 'g', diaORGate, 'i', ironEngine));
+			GameRegistry.addRecipe(new ExtendedShapedRecipe(engine5, "geg", "eie", "geg", 'e', engine4, 'g', diaORGate, 'i', ironEngine));
         }
 //		GameRegistry.addRecipe(new ItemStack(energyChecker), new Object[]{"w", "i",
 //			'w', BuildCraftTransport.pipePowerWood, 'i', Items.iron_ingot});
@@ -127,5 +141,11 @@ public class CompactEngine {
 
     public static void addChat(String format, Object... args) {
         addChat(String.format(format, args));
+    }
+
+    static {
+        for (String str : TEXTURE_STRING_LIST) {
+            RESOURCE_LOCATION_LIST.add(new ResourceLocation(MOD_ID.toLowerCase(), String.format("textures/blocks/%s.png", str)));
+        }
     }
 }
